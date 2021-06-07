@@ -1,0 +1,23 @@
+<div>
+  <input type="text" [(ngModel)]="itemId" />
+  <br />
+  <button (click)="getAllItems()">GetAllItems</button>
+  <button (click)="getItemById()">GetItemById</button>
+  <button (click)="addItem()">AddItem</button>
+  <button (click)="updateItemById()">UpdateItemById</button>
+  <button (click)="deleteItemById()">DeleteItemById</button>
+</div>
+
+<div *ngIf="error" class="error">
+  ERROR : Veuillez renseigner l'id item existant
+</div>
+<div *ngIf="success" class="success">SUCCESS</div>
+
+<div *ngIf="result">
+  Current :
+  <br />
+
+  <pre>
+    {{ result | json }}
+  </pre>
+</div>
