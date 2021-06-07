@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { count } from 'console';
+import { element } from 'protractor';
 import { ItemService } from './item.service';
 
 @Component({
@@ -105,5 +107,16 @@ export class ItemComponent implements OnInit {
     } else {
       this.error = true;
     }
+  }
+
+  resetAllItem(): void {
+    this.init();
+
+    this.itemService.removeAll().subscribe(
+      (res) => {
+        this.getAllItems();
+      },
+      (err) => (this.error = true)
+    );
   }
 }
