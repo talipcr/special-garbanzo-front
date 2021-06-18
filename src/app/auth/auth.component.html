@@ -1,0 +1,20 @@
+<div>
+  <input type="email" [(ngModel)]="email" autocomplete="off" />
+  <input type="password" [(ngModel)]="password" autocomplete="new-password" />
+
+  <button (click)="login()">Se connecter</button>
+  <button (click)="signup()">S'inscrire</button>
+  <button class="red" (click)="reset()">Changer de mot de passe</button>
+</div>
+
+<div *ngIf="error" class="error">ERROR</div>
+<div *ngIf="success" class="success">SUCCESS</div>
+
+<div *ngIf="result">
+  Current :
+  <br />
+
+  <pre>
+    {{ result | json }}
+  </pre>
+</div>

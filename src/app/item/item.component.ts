@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { count } from 'console';
-import { element } from 'protractor';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 import { ItemService } from './item.service';
 
 @Component({
@@ -8,15 +8,17 @@ import { ItemService } from './item.service';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent {
   itemId = '';
-  result: any = null;
+  result = null;
   error = false;
   success = false;
 
-  constructor(private itemService: ItemService) {}
-
-  ngOnInit(): void {}
+  constructor(
+    private itemService: ItemService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   init(): void {
     this.result = null;
@@ -55,7 +57,7 @@ export class ItemComponent implements OnInit {
   addItem(): void {
     this.init();
 
-    const newItem = {
+    const newItem: any = {
       name: 'Salad',
       price: 499,
       description: 'Fresh',
@@ -74,7 +76,7 @@ export class ItemComponent implements OnInit {
   updateItemById(): void {
     this.init();
 
-    const updateItem = {
+    const updateItem: any = {
       name: 'Spicy Pizza',
       price: 599,
       description: 'Blazing Good',
@@ -118,5 +120,13 @@ export class ItemComponent implements OnInit {
       },
       (err) => (this.error = true)
     );
+  }
+
+  async logout(): Promise<void> {
+    localStorage.removeItem('currentUser.uid');
+    localStorage.removeItem('currentUser.accessToken');
+    localStorage.removeItem('currentUser.refreshToken');
+
+    await this.router.navigate(['/auth']);
   }
 }
