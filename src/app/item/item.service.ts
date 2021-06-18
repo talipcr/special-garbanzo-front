@@ -12,26 +12,26 @@ export class ItemService {
   constructor(private http: HttpClient) {}
 
   getAllItems(): Observable<void> {
-    return this.http.get<any>(`${this.baseUrl}`);
+    return this.http.get<void>(`${this.baseUrl}`);
   }
 
   getItemById(id: string): Observable<void> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+    return this.http.get<void>(`${this.baseUrl}/${id}`);
   }
 
-  addItem(newItem: any): Observable<void> {
-    return this.http.post<any>(`${this.baseUrl}`, newItem);
+  addItem(newItem: void): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}`, newItem);
   }
 
-  updateItemById(id: string, updateItem: any): Observable<void> {
-    return this.http.put<any>(`${this.baseUrl}/${id}`, updateItem);
+  updateItemById(id: string, updateItem: void): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}`, updateItem);
   }
 
   deleteItemById(id: string): Observable<void> {
-    return this.http.delete<any>(`${this.baseUrl}/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
   removeAll(): Observable<void> {
-    return this.http.delete<any>(`${this.baseUrl}`);
+    return this.http.delete<void>(`${this.baseUrl}`);
   }
 }
